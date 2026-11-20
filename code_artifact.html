@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Спорт України: Гордість та Перемоги</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            uaBlue: '#0057B7',
+            uaBlueDark: '#003D82',
+            uaGold: '#FFD700',
+            uaGoldHover: '#F2C700',
+            navyDeep: '#09111E',
+            navyCard: '#111D32',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Плавні анімації та кастомні стилі */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .font-display {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .hero-pattern {
+      background-color: #09111E;
+      background-image: 
+        radial-gradient(circle at 15% 25%, rgba(0, 87, 183, 0.35) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(255, 215, 0, 0.16) 0%, transparent 45%),
+        linear-gradient(135deg, #09111E 0%, #0E1B30 50%, #09111E 100%);
+    }
+
+    .grid-bg {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    .card-hover {
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 28px -8px rgba(0, 87, 183, 0.14), 0 8px 12px -6px rgba(15, 23, 42, 0.06);
+    }
+
+    /* Кастомний скролбар для модальних вікон */
+    .modal-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 8px;
+    }
+    .modal-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 8px;
+    }
+    .modal-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .animate-modal {
+      animation: fadeInScale 0.25s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-uaBlue selection:text-white">
+
+  <!-- НАВІГАЦІЯ (Sticky Header) -->
+  <header class="sticky top-0 z-40 bg-navyDeep/95 backdrop-blur-md border-b border-white/10 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Логотип -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-b from-uaBlue to-uaGold p-0.5 shadow-lg shadow-uaBlue/20">
+            <div class="w-full h-full bg-navyDeep rounded-[10px] flex items-center justify-center">
+              <!-- Олімпійський факел / Тризуб стилізація -->
+              <svg class="w-6 h-6 text-uaGold group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L14.8 8.2L21.5 9L16.5 13.6L17.8 20.3L12 17L6.2 20.3L7.5 13.6L2.5 9L9.2 8.2L12 2Z" />
+              </svg>
+            </div>
+          </div>
+          <div>
+            <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight block leading-none">
+              СПОРТ <span class="text-uaGold">УКРАЇНИ</span>
+            </span>
+            <span class="text-[11px] uppercase tracking-widest text-slate-400 font-medium">Гордість та перемоги</span>
+          </div>
+        </a>
+
+        <!-- Десктоп меню -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#hero" class="text-slate-200 hover:text-uaGold transition-colors">Головна</a>
+          <a href="#sports" class="text-slate-200 hover:text-uaGold transition-colors">Види спорту</a>
+          <a href="#athletes" class="text-slate-200 hover:text-uaGold transition-colors">Легенди спорту</a>
+          <a href="#timeline" class="text-slate-200 hover:text-uaGold transition-colors">Хронологія перемог</a>
+          <a href="#quiz" class="px-4 py-2 rounded-xl bg-uaBlue hover:bg-blue-600 text-white font-semibold transition-all shadow-md shadow-uaBlue/30">
+            Вікторина
+          </a>
+        </nav>
+
+        <!-- Мобільна кнопка меню -->
+        <button id="mobile-menu-btn" aria-label="Відкрити меню" class="md:hidden p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 focus:outline-none">
+          <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Мобільне випадаюче меню -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navyCard border-b border-white/10 px-4 pt-2 pb-5 space-y-2">
+      <a href="#hero" class="mobile-link block px-4 py-2.5 rounded-xl text-slate-200 hover:bg-white/5 hover:text-uaGold font-medium">Головна</a>
+      <a href="#sports" class="mobile-link block px-4 py-2.5 rounded-xl text-slate-200 hover:bg-white/5 hover:text-uaGold font-medium">Види спорту</a>
+      <a href="#athletes" class="mobile-link block px-4 py-2.5 rounded-xl text-slate-200 hover:bg-white/5 hover:text-uaGold font-medium">Легенди спорту</a>
+      <a href="#timeline" class="mobile-link block px-4 py-2.5 rounded-xl text-slate-200 hover:bg-white/5 hover:text-uaGold font-medium">Хронологія перемог</a>
+      <a href="#quiz" class="mobile-link block px-4 py-2.5 rounded-xl bg-uaBlue text-white font-semibold text-center mt-2">Пройти вікторину</a>
+    </div>
+  </header>
+
+  <!-- ГОЛОВНИЙ ЕКРАН (Hero Section) -->
+  <section id="hero" class="hero-pattern relative text-white overflow-hidden">
+    <div class="grid-bg absolute inset-0 pointer-events-none"></div>
+    
+    <!-- Декоративна стрічка прапора -->
+    <div class="h-1.5 w-full flex">
+      <div class="w-1/2 bg-uaBlue"></div>
+      <div class="w-1/2 bg-uaGold"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Ліва колонка: Текст -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-uaGold text-xs sm:text-sm font-semibold tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-uaGold animate-pulse"></span>
+            Національна спортивна енциклопедія
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.12]">
+            Сила духу, <br class="hidden sm:inline" />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-uaGold via-yellow-200 to-uaGold">
+              що підкорює світ
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Від олімпійського золота Атланти та Парижа до історичних світових рекордів і поясів абсолютних чемпіонів світу. Відкрийте історії видів спорту та видатних атлетів, які прославили синьо-жовтий стяг на всіх континентах.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#sports" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-uaGold hover:bg-uaGoldHover text-navyDeep font-display font-bold text-sm sm:text-base shadow-lg shadow-uaGold/20 transition-all text-center">
+              Дослідити види спорту
+            </a>
+            <a href="#athletes" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm sm:text-base transition-all text-center">
+              Легендарні спортсмени
+            </a>
+          </div>
+        </div>
+
+        <!-- Права колонка: Візуальна картка-інфографіка -->
+        <div class="lg:col-span-5">
+          <div class="relative rounded-3xl bg-gradient-to-br from-white/10 to-white/5 border border-white/15 p-6 sm:p-8 backdrop-blur-md shadow-2xl">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+              <div>
+                <p class="text-xs uppercase tracking-wider text-slate-400">Олімпійська спадщина</p>
+                <h2 class="text-xl font-display font-bold text-white mt-0.5">Україна на світовій арені</h2>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-uaBlue/30 border border-uaBlue flex items-center justify-center text-uaGold">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-4 rounded-2xl bg-navyDeep/70 border border-white/10">
+                <div class="text-2xl sm:text-3xl font-display font-black text-uaGold">150+</div>
+                <div class="text-xs sm:text-sm text-slate-300 mt-1">Олімпійських медалей незалежної України</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-navyDeep/70 border border-white/10">
+                <div class="text-2xl sm:text-3xl font-display font-black text-blue-400">35+</div>
+                <div class="text-xs sm:text-sm text-slate-300 mt-1">Світових рекордів лише у стрибках з жердиною</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-navyDeep/70 border border-white/10">
+                <div class="text-2xl sm:text-3xl font-display font-black text-white">3</div>
+                <div class="text-xs sm:text-sm text-slate-300 mt-1">Володарі футбольного «Золотого м'яча»</div>
+              </div>
+              <div class="p-4 rounded-2xl bg-navyDeep/70 border border-white/10">
+                <div class="text-2xl sm:text-3xl font-display font-black text-uaGold">2.10 м</div>
+                <div class="text-xs sm:text-sm text-slate-300 mt-1">Чинний світовий рекорд у стрибках у висоту</div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/10 flex items-center gap-3 text-xs text-slate-300">
+              <span class="px-2.5 py-1 rounded-lg bg-uaBlue text-white font-bold">1994 — 2026</span>
+              <span>Безперервна історія перемог на літніх та зимових Іграх</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- РОЗДІЛ 1: СТАТТІ ПРО ВИДИ СПОРТУ В УКРАЇНІ -->
+  <section id="sports" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-uaBlue bg-blue-50 px-3.5 py-1.5 rounded-full">
+        Спортивні дисципліни
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 mt-4">
+        Види спорту в Україні
+      </h2>
+      <p class="text-slate-600 mt-3 text-base sm:text-lg">
+        Ознайомтеся з оглядовими статтями про дисципліни, в яких українські школи та тренери задають світові стандарти майстерності.
+      </p>
+    </div>
+
+    <!-- Фільтр категорій видів спорту -->
+    <div id="sport-filters" class="flex flex-wrap items-center justify-center gap-2.5 mb-10">
+      <button data-category="all" class="sport-filter-btn active px-5 py-2.5 rounded-xl text-sm font-semibold bg-uaBlue text-white shadow-md shadow-uaBlue/20 transition-all">
+        Усі напрямки
+      </button>
+      <button data-category="combat" class="sport-filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all">
+        Єдиноборства та фехтування
+      </button>
+      <button data-category="athletics" class="sport-filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all">
+        Легка атлетика та гімнастика
+      </button>
+      <button data-category="team" class="sport-filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all">
+        Ігрові види
+      </button>
+      <button data-category="water" class="sport-filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all">
+        Водні види
+      </button>
+    </div>
+
+    <!-- Сітка карток статей про види спорту -->
+    <div id="sports-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+      <!-- Картки рендеряться через JavaScript -->
+    </div>
+  </section>
+
+  <!-- РОЗДІЛ 2: ВИДАТНІ СПОРТСМЕНИ УКРАЇНИ -->
+  <section id="athletes" class="py-16 sm:py-24 bg-slate-100/80 border-y border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div class="max-w-2xl">
+          <span class="text-xs font-bold uppercase tracking-widest text-uaBlue bg-white border border-blue-100 px-3.5 py-1.5 rounded-full">
+            Зала слави
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 mt-4">
+            Гордість нації: Видатні спортсмени
+          </h2>
+          <p class="text-slate-600 mt-3 text-base sm:text-lg">
+            Біографічні нариси про українських чемпіонів, чиї імена вписані золотими літерами в історію світового спорту.
+          </p>
+        </div>
+
+        <!-- Пошук та фільтр за дисципліною -->
+        <div class="w-full md:w-80">
+          <label for="athlete-search" class="sr-only">Пошук спортсмена</label>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="athlete-search" 
+              placeholder="Пошук за ім'ям або видом спорту..." 
+              class="w-full pl-11 pr-4 py-3 rounded-2xl bg-white border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-uaBlue focus:border-transparent shadow-sm"
+            />
+            <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Сітка карток спортсменів -->
+      <div id="athletes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Картки рендеряться через JavaScript -->
+      </div>
+
+      <!-- Повідомлення, якщо нічого не знайдено -->
+      <div id="athletes-empty" class="hidden text-center py-12 bg-white rounded-3xl border border-slate-200">
+        <p class="text-slate-500 font-medium">За вашим запитом спортсменів не знайдено. Спробуйте змінити ключове слово.</p>
+        <button id="reset-search-btn" class="mt-3 px-5 py-2 rounded-xl bg-uaBlue text-white text-sm font-semibold hover:bg-blue-700 transition-colors">
+          Показати всіх
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- РОЗДІЛ 3: ХРОНОЛОГІЯ ЗОЛОТИХ ПЕРЕМОГ -->
+  <section id="timeline" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <span class="text-xs font-bold uppercase tracking-widest text-uaBlue bg-blue-50 px-3.5 py-1.5 rounded-full">
+        Історичний шлях
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 mt-4">
+        Ключові віхи спортивної слави
+      </h2>
+      <p class="text-slate-600 mt-3 text-base sm:text-lg">
+        Головні миті тріумфу незалежної України на Олімпійських іграх та світових першостях.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <!-- Елемент 1 -->
+      <div class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm relative overflow-hidden">
+        <div class="text-xs font-extrabold uppercase tracking-wider text-uaBlue mb-2">1994 • Ліллегаммер</div>
+        <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Перше золото Незалежності</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Фігуристка Оксана Баюл здобуває першу в історії незалежної України золоту олімпійську медаль, і над ареною вперше лунає національний гімн.
+        </p>
+      </div>
+
+      <!-- Елемент 2 -->
+      <div class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm relative overflow-hidden">
+        <div class="text-xs font-extrabold uppercase tracking-wider text-uaBlue mb-2">1996 • Атланта</div>
+        <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Дебют на літніх Іграх</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Україна входить у топ-10 медального заліку світу (9 золотих медалей): тріумфи Лілії Подкопаєвої, Володимира Кличка та Катерини Серебрянської.
+        </p>
+      </div>
+
+      <!-- Елемент 3 -->
+      <div class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm relative overflow-hidden">
+        <div class="text-xs font-extrabold uppercase tracking-wider text-uaBlue mb-2">2004 • Європа та Афіни</div>
+        <h3 class="font-display font-bold text-lg text-slate-900 mb-2">«Золотий м'яч» та водна феєрія</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Андрій Шевченко отримує «Золотий м'яч» найкращого футболіста Європи, а Яна Клочкова стає чотириразовою олімпійською чемпіонкою з плавання.
+        </p>
+      </div>
+
+      <!-- Елемент 4 -->
+      <div class="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm relative overflow-hidden">
+        <div class="text-xs font-extrabold uppercase tracking-wider text-uaBlue mb-2">2012 • Лондон</div>
+        <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Золота ера українського боксу</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Олександр Усик та Василь Ломаченко виборюють олімпійське золото в Лондоні, розпочавши шлях до вершин професійного світового боксу.
+        </p>
+      </div>
+
+      <!-- Елемент 5 -->
+      <div class="p-6 rounded-3xl bg-navyDeep text-white border border-uaGold/40 shadow-lg relative overflow-hidden">
+        <div class="text-xs font-extrabold uppercase tracking-wider text-uaGold mb-2">2024 • Париж</div>
+        <h3 class="font-display font-bold text-lg text-white mb-2">Рекорд століття та незламність</h3>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          Ярослава Магучіх б'є 37-річний світовий рекорд (2,10 м) та бере золото Парижа, а Ольга Харлан здобуває шосту олімпійську нагороду в кар'єрі.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- РОЗДІЛ 4: ІНТЕРАКТИВНА ВІКТОРИНА -->
+  <section id="quiz" class="py-16 sm:py-24 bg-navyDeep text-white relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-uaGold bg-white/10 px-3.5 py-1.5 rounded-full">
+          Інтерактив
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold mt-4">
+          Перевір свої знання про спорт України
+        </h2>
+        <p class="text-slate-300 mt-2 text-base">
+          Дайте відповідь на 5 запитань про видатні досягнення та рекорди українських атлетів.
+        </p>
+      </div>
+
+      <div id="quiz-container" class="bg-navyCard border border-white/15 rounded-3xl p-6 sm:p-10 shadow-2xl">
+        <!-- Прогрес бар -->
+        <div class="flex items-center justify-between text-xs sm:text-sm text-slate-400 mb-3">
+          <span id="quiz-progress-text">Питання 1 з 5</span>
+          <span id="quiz-score-badge" class="text-uaGold font-semibold">Рахунок: 0</span>
+        </div>
+        <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden mb-8">
+          <div id="quiz-progress-bar" class="h-full bg-gradient-to-r from-uaBlue to-uaGold transition-all duration-300" style="width: 20%"></div>
+        </div>
+
+        <!-- Питання та варіанти -->
+        <div id="quiz-question-area">
+          <h3 id="quiz-question" class="text-xl sm:text-2xl font-display font-bold text-white mb-6 leading-snug">
+            Завантаження питання...
+          </h3>
+          <div id="quiz-options" class="space-y-3">
+            <!-- Варіанти відповідей -->
+          </div>
+          <div id="quiz-feedback" class="hidden mt-6 p-4 rounded-2xl text-sm leading-relaxed"></div>
+          <div class="mt-6 flex justify-end">
+            <button id="quiz-next-btn" class="hidden px-6 py-3 rounded-xl bg-uaGold hover:bg-uaGoldHover text-navyDeep font-display font-bold text-sm transition-all">
+              Наступне питання →
+            </button>
+          </div>
+        </div>
+
+        <!-- Фінальний екран результатів -->
+        <div id="quiz-result-area" class="hidden text-center py-6 space-y-5">
+          <div class="w-20 h-20 mx-auto rounded-full bg-uaGold/20 border-2 border-uaGold flex items-center justify-center text-uaGold">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-display font-extrabold text-white">
+            Ваш результат: <span id="final-score" class="text-uaGold">5 / 5</span>
+          </h3>
+          <p id="final-message" class="text-slate-300 max-w-lg mx-auto text-base"></p>
+          <button id="quiz-restart-btn" class="px-7 py-3.5 rounded-2xl bg-uaBlue hover:bg-blue-600 text-white font-semibold text-sm transition-all shadow-lg">
+            Пройти вікторину ще раз
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПІДВАЛ (Footer) -->
+  <footer class="bg-slate-950 text-slate-400 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-b from-uaBlue to-uaGold"></div>
+          <span class="font-display font-bold text-white text-lg">СПОРТ УКРАЇНИ</span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 text-sm">
+          <a href="#hero" class="hover:text-white transition-colors">Головна</a>
+          <a href="#sports" class="hover:text-white transition-colors">Види спорту</a>
+          <a href="#athletes" class="hover:text-white transition-colors">Легенди спорту</a>
+          <a href="#timeline" class="hover:text-white transition-colors">Хронологія</a>
+          <a href="#quiz" class="hover:text-white transition-colors">Вікторина</a>
+        </div>
+      </div>
+      <div class="mt-8 pt-8 border-t border-white/10 text-center sm:flex sm:items-center sm:justify-between text-xs text-slate-500">
+        <p>© 2026 «Спорт України: Гордість та Перемоги». Освітньо-інформаційний портал.</p>
+        <p class="mt-2 sm:mt-0 text-slate-400">Слава Україні та її чемпіонам!</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- МОДАЛЬНЕ ВІКНО ДЛЯ ПОВНИХ СТАТЕЙ (Види спорту та Біографії атлетів) -->
+  <div id="article-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-slate-950/75 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[88vh] flex flex-col shadow-2xl overflow-hidden animate-modal">
+      <!-- Шапка модального вікна -->
+      <div id="modal-header-banner" class="p-6 sm:p-8 bg-gradient-to-r from-navyDeep to-uaBlue text-white relative">
+        <button id="close-modal-btn" aria-label="Закрити вікно" class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <span id="modal-badge" class="inline-block px-3 py-1 rounded-full bg-uaGold text-navyDeep text-xs font-extrabold uppercase tracking-wider mb-3">
+          Категорія
+        </span>
+        <h3 id="modal-title" class="text-2xl sm:text-3xl font-display font-extrabold leading-tight pr-8">
+          Заголовок статті
+        </h3>
+        <p id="modal-subtitle" class="text-blue-100 text-sm sm:text-base mt-2">
+          Підзаголовок
+        </p>
+      </div>
+
+      <!-- Прокручуваний контент статті -->
+      <div id="modal-body" class="p-6 sm:p-8 overflow-y-auto modal-scroll space-y-5 text-slate-700 leading-relaxed text-sm sm:text-base">
+        <!-- Контент підставляється динамічно -->
+      </div>
+
+      <!-- Нижня панель модалки -->
+      <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+        <span class="text-xs text-slate-500 font-medium">Національний спортивний архів</span>
+        <button id="close-modal-footer-btn" class="px-5 py-2.5 rounded-xl bg-navyDeep hover:bg-slate-800 text-white text-sm font-semibold transition-colors">
+          Закрити статтю
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT ЛОГІКА -->
+  <script>
+    // ==========================================
+    // 1. БАЗА ДАНИХ СТАТЕЙ ПРО ВИДИ СПОРТУ
+    // ==========================================
+    const sportsArticles = [
+      {
+        id: 'boxing',
+        category: 'combat',
+        categoryLabel: 'Єдиноборства',
+        title: 'Бокс: Українська школа чемпіонів світу',
+        summary: 'Від олімпійського тріумфу в Атланті та Лондоні до завоювання всіх поясів абсолютних чемпіонів світу у надважкій та легкій вазі.',
+        readTime: '4 хв читання',
+        accentGradient: 'from-blue-600 to-indigo-800',
+        iconSvg: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+        fullContent: [
+          'Українська школа боксу по праву вважається однією з найсильніших на планеті. Її фундамент заклали видатні тренери, які поєднали класичну техніку пересування на ногах, високий боксерський інтелект та безкомпромісний характер.',
+          'Перший гучний прорив на Олімпіадах стався у 1996 році в Атланті, коли Володимир Кличко здобув золото у надважкій вазі. Згодом брати Віталій та Володимир Кличко понад десятиліття домінували у світовому хевівейті, зібравши всі престижні чемпіонські пояси.',
+          'Нова «золота хвиля» накрила світ на Олімпіаді-2012 у Лондоні, де українська збірна виборола дві золоті (Олександр Усик, Василь Ломаченко), срібну (Денис Берінчик) та дві бронзові медалі. У 2024 році Олександр Усик став першим за 25 років абсолютним чемпіоном світу у надважкій вазі в епоху чотирьох поясів, а Олександр Хижняк приніс Україні золото Олімпіади в Парижі.'
+        ],
+        highlights: [
+          'Брати Клички — багаторічні домінатори надважкого дивізіону',
+          'Олександр Усик — абсолютний чемпіон світу у двох вагових категоріях',
+          'Василь Ломаченко — дворазовий олімпійський чемпіон та чемпіон світу у трьох дивізіонах'
+        ]
+      },
+      {
+        id: 'athletics',
+        category: 'athletics',
+        categoryLabel: 'Легка атлетика',
+        title: 'Легка атлетика: Королева світових рекордів',
+        summary: 'Феноменальні стрибки у висоту, з жердиною та потрійним стрибком, які переписали таблицю світових досягнень.',
+        readTime: '4 хв читання',
+        accentGradient: 'from-sky-600 to-blue-800',
+        iconSvg: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 11l7-7 7 7M5 19l7-7 7 7"/></svg>`,
+        fullContent: [
+          'Легка атлетика подарувала Україні найбільшу кількість світових рекордів. У 1980-х та 1990-х роках світ захоплювався польотами Сергія Бубки, який 35 разів оновлював світовий рекорд у стрибках з жердиною та першим в історії подолав гросмейстерський рубіж у 6 метрів.',
+          'Не менш легендарним є досягнення Інесси Кравець у потрійному стрибку — її рекорд 15,50 м, встановлений у 1995 році, тримався понад чверть століття, а на Іграх в Атланті-1996 вона виборола олімпійське золото.',
+          'Сучасна епоха української легкої атлетики нерозривно пов’язана зі стрибками у висоту. У липні 2024 року в Парижі Ярослава Магучіх підкорила планку на висоті 2,10 м, побивши світовий рекорд болгарки Стефки Костадінової, який тримався з 1987 року, а за місяць стала олімпійською чемпіонкою.'
+        ],
+        highlights: [
+          'Сергій Бубка — 35 світових рекордів та олімпійське золото',
+          'Ярослава Магучіх — чинна рекордсменка світу (2,10 м) та чемпіонка Парижа-2024',
+          'Наталія Добринська — олімпійська чемпіонка Пекіна у семиборстві'
+        ]
+      },
+      {
+        id: 'fencing',
+        category: 'combat',
+        categoryLabel: 'Фехтування',
+        title: 'Фехтування: Шляхетність, швидкість і золото',
+        summary: 'Українська шабля та шпага як символ незламності: тріумфи командних та індивідуальних турнірів на Олімпіадах.',
+        readTime: '3 хв читання',
+        accentGradient: 'from-amber-500 to-yellow-600',
+        iconSvg: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+        fullContent: [
+          'Фехтування в Україні має глибокі історичні корені — від львівської та київської до миколаївської школи шаблі. Саме фехтувальники принесли Україні одні з найемоційніших олімпійських перемог у новітній історії.',
+          'У 2008 році в Пекіні жіноча збірна України з фехтування на шаблях (Ольга Харлан, Олена Хомрова, Галина Пундик, Ольга Жовнір) у драматичному фіналі вирвала золото у господарок турніру, програючи по ходу зустрічі.',
+          'У 2012 році в Лондоні Яна Шемякіна стала першою українською олімпійською чемпіонкою в індивідуальній шпазі. А на Олімпіаді-2024 в Парижі українська жіноча команда шаблісток знову зійшла на найвищу сходинку п’єдесталу, довівши спадкоємність переможних традицій.'
+        ],
+        highlights: [
+          'Ольга Харлан — 6 олімпійських нагород та 6 титулів чемпіонки світу',
+          'Яна Шемякіна — олімпійська чемпіонка Лондона-2012 у шпазі',
+          'Дворазові олімпійські чемпіонки в командній шаблі (2008, 2024)'
+        ]
+      },
+      {
+        id: 'football',
+        category: 'team',
+        categoryLabel: 'Ігрові види',
+        title: 'Футбол: Гра мільйонів та три «Золоті м’ячі»',
+        summary: 'Європейські кубки київського «Динамо», легенди тренерського цеху та виступи збірної України на чемпіонатах світу і Європи.',
+        readTime: '5 хв читання',
+        accentGradient: 'from-emerald-600 to-teal-800',
+        iconSvg: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7l3 2.5-1.2 3.5H10.2L9 9.5 12 7z"/></svg>`,
+        fullContent: [
+          'Футбол — наймасовіший і найулюбленіший вид спорту в Україні. Вихованці українського футболу тричі ставали володарями найпрестижнішої індивідуальної нагороди світу — «Золотого м’яча»: Олег Блохін (1975), Ігор Бєланов (1986) та Андрій Шевченко (2004).',
+          'Легендарний тренер Валерій Лобановський здійснив тактичну революцію у світовому футболі, вигравши з київським «Динамо» два Кубки володарів кубків УЄФА та Суперкубок УЄФА, а у 1999 році вивів команду до півфіналу Ліги чемпіонів.',
+          'Національна збірна України яскраво заявила про себе на дебютному ЧС-2006, діставшись чвертьфіналу, а також повторила це досягнення на Євро-2020. Сьогодні українські футболісти — Олександр Зінченко, Михайло Мудрик, Ілля Забарний, Артем Довбик, Анатолій Трубін та Андрій Лунін — є лідерами провідних клубів Англії, Іспанії та Португалії.'
+        ],
+        highlights: [
+          'Три володарі «Золотого м’яча»: Блохін, Бєланов, Шевченко',
+          'Чвертьфінал Чемпіонату світу-2006 та Євро-2020',
+          'Провідні ролі українських легіонерів у АПЛ та Ла Лізі'
+        ]
+      },
+      {
+        id: 'gymnastics',
+        category: 'athletics',
+        categoryLabel: 'Гімнастика',
+        title: 'Гімнастика: Грація, пластика та залізна воля',
+        summary: 'Школа Дерюгіних у художній гімнастиці та тріумфи українських акробатів на олімпійських снарядах.',
+        readTime: '4 хв читання',
+        accentGradient: 'from-purple-600 to-indigo-800',
+        iconSvg: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m-6-6l6-6 6 6"/></svg>`,
+        fullContent: [
+          'Українська школа як спортивної, так і художньої гімнастики є еталоном складності та артистизму. В Атланті-1996 Україна здобула одразу дві абсолютні олімпійські перемоги: Лілія Подкопаєва підкорила спортивну гімнастику, а Катерина Серебрянська — художню.',
+          'Школа художньої гімнастики Альбіни та Ірини Дерюгіних виховала цілу плеяду світових зірок, серед яких Ганна Безсонова, Ганна Різатдінова, Олена Вітриченко та Таїсія Онофрійчук. Український стиль вирізняється високою емоційністю та унікальною роботою з предметом.',
+          'У чоловічій спортивній гімнастиці світове визнання здобув Олег Верняєв — олімпійський чемпіон Ріо-2016 на паралельних брусах та срібний призер в абсолютній першості, а також Ілля Ковтун, який виборов срібло Олімпіади-2024 в Парижі.'
+        ],
+        highlights: [
+          'Лілія Подкопаєва та Катерина Серебрянська — олімпійські чемпіонки 1996 року',
+          'Олег Верняєв — олімпійський чемпіон Ріо-2016 на брусах',
+          'Школа Дерюгіних — світовий бренд художньої гімнастики'
+        ]
+      },
+      {
+        id: 'water',
+        category: 'water',
+        categoryLabel: 'Водні види',
+        title: 'Веслування та плавання: Стихія переможців',
+        summary: 'Швидкість байдарок і каное, олімпійські рекорди «Золотої рибки» та сучасні зірки водного спорту.',
+        readTime: '3 хв читання',
+        accentGradient: 'from-cyan-600 to-blue-700',
+        iconSvg: `<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15c2.483 0 4.345-1 6-3 1.655 2 3.517 3 6 3s4.345-1 6-3M3 19c2.483 0 4.345-1 6-3 1.655 2 3.517 3 6 3s4.345-1 6-3"/></svg>`,
+        fullContent: [
+          'Водні види спорту стабільно приносять Україні медалі найвищого ґатунку. У плаванні головною зіркою стала Яна Клочкова, яка на Олімпійських іграх у Сіднеї (2000) та Афінах (2004) виборола чотири золоті медалі у комплексному плаванні на 200 та 400 метрів.',
+          'Естафету успіхів підхопив Михайло Романчук, який на Іграх у Токіо-2020 здобув срібло та бронзу у стаєрському плаванні, встановивши олімпійський рекорд на дистанції 800 метрів вільним стилем.',
+          'У веслуванні на байдарках і каное світовою легендою став Юрій Чебан — дворазовий олімпійський чемпіон (Лондон-2012 та Ріо-2016) у каное-одиночці на 200 метрів. Серед жінок яскравими лідерками є Людмила Лузан та Анастасія Рибачок, які неодноразово підіймалися на олімпійський п’єдестал у Токіо та Парижі.'
+        ],
+        highlights: [
+          'Яна Клочкова — 4-разова олімпійська чемпіонка з плавання',
+          'Юрій Чебан — дворазовий олімпійський чемпіон у веслуванні на каное',
+          'Людмила Лузан — триразова призерка Олімпійських ігор у каное'
+        ]
+      }
+    ];
+
+    // ==========================================
+    // 2. БАЗА ДАНИХ ВИДАТНИХ СПОРТСМЕНІВ УКРАЇНИ
+    // ==========================================
+    const athletesData = [
+      {
+        id: 'usyk',
+        name: 'Олександр Усик',
+        sport: 'Бокс',
+        years: 'Нар. 1987 • Сімферополь',
+        badge: 'Абсолютний чемпіон світу',
+        initials: 'ОУ',
+        cardColor: 'from-blue-700 to-navyDeep',
+        shortDesc: 'Олімпійський чемпіон Лондона-2012, абсолютний чемпіон світу у першій важкій та надважкій вагових категоріях.',
+        achievements: [
+          'Олімпійський чемпіон 2012 року (вагова категорія до 91 кг)',
+          'Перший в історії абсолютний чемпіон світу у надважкій вазі в епоху 4-х поясів (WBA, WBC, IBF, WBO)',
+          'Абсолютний чемпіон світу у першій важкій вазі (крузервейт, 2018)',
+          'Володар Кубка Мохаммеда Алі'
+        ],
+        bio: [
+          'Олександр Усик — феномен світового боксу, який пройшов шлях від олімпійського тріумфу до вершини королівського дивізіону без жодної поразки на професійному рингу. Усик став першим українцем, якому вдалося зібрати всі чотири головні пояси у двох різних вагових категоріях.',
+          'У травні 2024 року в Ер-Ріяді Олександр переміг Тайсона Ф’юрі у поєдинку за звання абсолютного чемпіона світу у надважкій вазі, ставши першим володарем цього титулу з часів Леннокса Льюїса (1999), а в грудні 2024 року впевнено захистив пояси у реванші.'
+        ],
+        quote: '«Коли виходиш у ринг із прапором України, ти відчуваєш за спиною силу мільйонів людей».'
+      },
+      {
+        id: 'mahuchikh',
+        name: 'Ярослава Магучіх',
+        sport: 'Легка атлетика',
+        years: 'Нар. 2001 • Дніпро',
+        badge: 'Світова рекордсменка (2,10 м)',
+        initials: 'ЯМ',
+        cardColor: 'from-sky-600 to-blue-900',
+        shortDesc: 'Олімпійська чемпіонка Парижа-2024, чемпіонка світу та Європи, авторка історичного світового рекорду у стрибках у висоту.',
+        achievements: [
+          'Чинна рекордсменка світу у стрибках у висоту — 2,10 м (Париж, 2024)',
+          'Олімпійська чемпіонка Парижа-2024 та бронзова призерка Токіо-2020',
+          'Чемпіонка світу на відкритому повітрі (2023) та в приміщенні (2022)',
+          'Найкраща легкоатлетка світу 2024 року за версією World Athletics'
+        ],
+        bio: [
+          'Ярослава Магучіх увійшла в історію світового спорту 7 липня 2024 року на етапі Діамантової ліги в Парижі, коли з першої спроби взяла висоту 2,10 метра. Цим стрибком українка перевершила світовий рекорд Стефки Костадінової (2,09 м), який залишався непорушним майже 37 років.',
+          'Вже через місяць на Олімпійських іграх у Парижі Ярослава виборола омріяне золото, присвятивши цю перемогу всім захисникам і народу України.'
+        ],
+        quote: '«Кожен мій стрибок і кожна медаль — це нагадування світові, що Україна бореться і перемагає».'
+      },
+      {
+        id: 'kharlan',
+        name: 'Ольга Харлан',
+        sport: 'Фехтування (шабля)',
+        years: 'Нар. 1990 • Миколаїв',
+        badge: '6 олімпійських медалей',
+        initials: 'ОХ',
+        cardColor: 'from-amber-500 to-amber-700',
+        shortDesc: 'Найтитулованіша олімпійка в історії України, дворазова олімпійська чемпіонка та шестиразова чемпіонка світу.',
+        achievements: [
+          'Дворазова олімпійська чемпіонка (Пекін-2008, Париж-2024)',
+          'Володарка 6 олімпійських нагород (2 золота, 1 срібло, 3 бронзи) — абсолютний рекорд України',
+          'Шестиразова чемпіонка світу та восьмиразова чемпіонка Європи',
+          'Членкиня Зали слави Міжнародної федерації фехтування (FIE)'
+        ],
+        bio: [
+          'Ольга Харлан — символ незламності та багаторічного лідерства українського спорту. Своє перше олімпійське золото вона здобула ще у 17-річному віці в Пекіні-2008, завдавши вирішального уколу у фінальному поєдинку.',
+          'На Олімпіаді-2024 у Парижі Ольга виборола бронзу в індивідуальній шаблі (принісши Україні першу медаль тих Ігор), а згодом привела жіночу збірну до командного золота, ставши абсолютною рекордсменкою України за кількістю олімпійських нагород.'
+        ],
+        quote: '«Головне — ніколи не здаватися, навіть коли до кінця бою залишається один укол».'
+      },
+      {
+        id: 'shevchenko',
+        name: 'Андрій Шевченко',
+        sport: 'Футбол',
+        years: 'Нар. 1976 • Двірківщина',
+        badge: 'Володар «Золотого м’яча»',
+        initials: 'АШ',
+        cardColor: 'from-emerald-600 to-teal-900',
+        shortDesc: 'Легенда «Динамо», «Мілана» та збірної України, володар «Золотого м’яча» 2004 року, переможець Ліги чемпіонів УЄФА.',
+        achievements: [
+          'Володар «Золотого м’яча» 2004 року як найкращий футболіст Європи',
+          'Переможець Ліги чемпіонів УЄФА (2003) та чемпіон Італії у складі «Мілана»',
+          'Найкращий бомбардир в історії збірної України (48 голів)',
+          'П’ятиразовий чемпіон України з київським «Динамо»'
+        ],
+        bio: [
+          'Андрій Шевченко став головним послом українського футболу у світі. Розпочавши блискучу кар’єру у київському «Динамо» під керівництвом Валерія Лобановського (де оформив легендарний хет-трик на «Камп Ноу» проти «Барселони»), він перейшов до італійського «Мілана» і став другим бомбардиром в історії клубу.',
+          'У 2006 році як капітан вивів збірну України до чвертьфіналу дебютного Чемпіонату світу, а згодом вже як головний тренер повторив це досягнення на Євро-2020.'
+        ],
+        quote: '«Уся моя кар’єра завжди була пов’язана з Україною — де б я не грав, я представляв свою країну».'
+      },
+      {
+        id: 'bubka',
+        name: 'Сергій Бубка',
+        sport: 'Легка атлетика',
+        years: 'Нар. 1963 • Луганськ',
+        badge: '35 світових рекордів',
+        initials: 'СБ',
+        cardColor: 'from-indigo-600 to-slate-900',
+        shortDesc: 'Легендарний стрибун з жердиною, олімпійський чемпіон, шестиразовий чемпіон світу, автор 35 світових рекордів.',
+        achievements: [
+          '35 світових рекордів у стрибках з жердиною (17 на відкритому повітрі та 18 у приміщенні)',
+          'Перший атлет в історії, який подолав висоту 6,00 м (1985 рік)',
+          'Олімпійський чемпіон 1988 року',
+          'Шестиразовий поспіль чемпіон світу (1983–1997)'
+        ],
+        bio: [
+          'Сергій Бубка змінив уявлення про межі людських можливостей у стрибках з жердиною. Протягом понад десяти років він змагався фактично сам із собою, сантиметр за сантиметром піднімаючи планку світового рекорду від 5,85 м до феноменальних 6,15 м.',
+          'Його досягнення в приміщенні протрималося понад 20 років, а сам Бубка назавжди залишився еталоном технічної досконалості у світовій легкій атлетиці.'
+        ],
+        quote: '«Щоб перемагати, потрібно щодня перевершувати самого себе вчорашнього».'
+      },
+      {
+        id: 'klochkova',
+        name: 'Яна Клочкова',
+        sport: 'Плавання',
+        years: 'Нар. 1982 • Сімферополь',
+        badge: '4-разова олімпійська чемпіонка',
+        initials: 'ЯК',
+        cardColor: 'from-cyan-600 to-blue-900',
+        shortDesc: '«Золота рибка» України — володарка чотирьох золотих та однієї срібної олімпійської медалі у комплексному плаванні.',
+        achievements: [
+          'Чотириразова олімпійська чемпіонка (Сідней-2000 та Афіни-2004)',
+          'Встановила 50 рекордів України та світовий рекорд на 400 м комплексом',
+          'Десятиразова чемпіонка світу та 19-разова чемпіонка Європи',
+          'Герой України за видатні спортивні досягнення'
+        ],
+        bio: [
+          'Яна Клочкова підкорила світові басейни на межі тисячоліть. На Олімпіаді-2000 у Сіднеї вона виграла золото на дистанціях 200 і 400 метрів комплексним плаванням (зі світовим рекордом), а також срібло на 800 м вільним стилем.',
+          'Через чотири роки в Афінах-2004 українка оформила золотий дубль на своїх коронних дистанціях, ставши першою чотириразовою олімпійською чемпіонкою в історії незалежної України.'
+        ],
+        quote: '«Вода любить працьовитих: кожна секунда на фініші коштує років щоденних тренувань».'
+      },
+      {
+        id: 'svitolina',
+        name: 'Еліна Світоліна',
+        sport: 'Теніс',
+        years: 'Нар. 1994 • Одеса',
+        badge: 'Призерка Олімпіади-2020',
+        initials: 'ЕС',
+        cardColor: 'from-rose-600 to-purple-900',
+        shortDesc: 'Перша в історії України призерка Олімпійських ігор у тенісі, чемпіонка Підсумкового турніру WTA, екс-3-тя ракетка світу.',
+        achievements: [
+          'Бронзова призерка Олімпійських ігор у Токіо-2020',
+          'Переможниця Підсумкового турніру WTA Finals (2018)',
+          'Екс-третя ракетка світу в одиночному рейтингу WTA',
+          'Переможниця 17 турнірів WTA та півфіналістка Вімблдону й US Open'
+        ],
+        bio: [
+          'Еліна Світоліна вивела український жіночий теніс на найвищий світовий рівень. У 2017 році вона вперше серед українок увійшла до топ-3 світового рейтингу, а у 2018-му виграла престижний WTA Finals у Сінгапурі.',
+          'На Олімпіаді в Токіо-2020 Еліна у вольовому трисетовому матчі за бронзу обіграла Єлену Рибакіну, подарувавши Україні першу в історії олімпійську медаль у тенісі.'
+        ],
+        quote: '«Виступати під прапором України на Олімпіаді — це найвища честь для кожного тенісиста».'
+      },
+      {
+        id: 'podkopayeva',
+        name: 'Лілія Подкопаєва',
+        sport: 'Спортивна гімнастика',
+        years: 'Нар. 1978 • Донецьк',
+        badge: 'Абсолютна чемпіонка ОІ-1996',
+        initials: 'ЛП',
+        cardColor: 'from-violet-600 to-indigo-950',
+        shortDesc: 'Абсолютна олімпійська чемпіонка Атланти-1996, володарка Кубка Європи, авторка іменного надскладного елемента.',
+        achievements: [
+          'Абсолютна олімпійська чемпіонка Атланти-1996 у багатоборстві',
+          'Олімпійська чемпіонка 1996 року у вільних вправах та срібна призерка на колоді',
+          'Абсолютна чемпіонка світу (1995) та Європи (1996)',
+          'Авторка унікального елемента — подвійного сальто вперед із поворотом на 180°'
+        ],
+        bio: [
+          'Тріумф Лілії Подкопаєвої на Олімпіаді-1996 в Атланті став однією з найяскравіших сторінок літніх Ігор. Виконавши програму бездоганно, вона стала четвертою гімнасткою в історії, якій вдалося виграти одночасно і багатоборство, і фінал у вільних вправах.',
+          'Її коронний стрибок — подвійне сальто вперед із поворотом на 180 градусів — досі вважається одним із найскладніших елементів у світовій спортивній гімнастиці.'
+        ],
+        quote: '«Гімнастика вчить падати, підніматися і посміхатися навіть тоді, коли неймовірно важко».'
+      }
+    ];
+
+    // ==========================================
+    // 3. ПИТАННЯ ДЛЯ ІНТЕРАКТИВНОЇ ВІКТОРИНИ
+    // ==========================================
+    const quizQuestions = [
+      {
+        question: 'Яку висоту подолала Ярослава Магучіх у липні 2024 року, встановивши новий світовий рекорд у стрибках у висоту?',
+        options: ['2,06 м', '2,09 м', '2,10 м', '2,12 м'],
+        correctIndex: 2,
+        explanation: '7 липня 2024 року в Парижі Ярослава Магучіх підкорила висоту 2,10 м, побивши попередній світовий рекорд (2,09 м), який тримався з 1987 року.'
+      },
+      {
+        question: 'Хто з українських спортсменів є абсолютним рекордсменом України за кількістю олімпійських нагород (6 медалей)?',
+        options: ['Яна Клочкова', 'Ольга Харлан', 'Сергій Бубка', 'Олександр Усик'],
+        correctIndex: 1,
+        explanation: 'Шаблістка Ольга Харлан завоювала 6 олімпійських медалей на чотирьох Іграх (2008, 2012, 2016, 2024): дві золоті, одну срібну та три бронзові.'
+      },
+      {
+        question: 'У якому році Андрій Шевченко став володарем престижної нагороди «Золотий м’яч»?',
+        options: ['1999', '2003', '2004', '2006'],
+        correctIndex: 2,
+        explanation: 'Андрій Шевченко отримав «Золотий м’яч» у грудні 2004 року, ставши третім українським футболістом після Олега Блохіна та Ігоря Бєланова, удостоєним цієї нагороди.'
+      },
+      {
+        question: 'Хто здобув першу золоту олімпійську медаль в історії незалежної України у 1994 році?',
+        options: ['Лілія Подкопаєва', 'Оксана Баюл', 'Володимир Кличко', 'Катерина Серебрянська'],
+        correctIndex: 1,
+        explanation: 'Фігуристка Оксана Баюл перемогла на зимових Олімпійських іграх 1994 року в Ліллегаммері, принісши Україні перше олімпійське золото Незалежності.'
+      },
+      {
+        question: 'Скільки світових рекордів у стрибках з жердиною встановив за свою кар’єру Сергій Бубка?',
+        options: ['15', '24', '35', '42'],
+        correctIndex: 2,
+        explanation: 'Сергій Бубка 35 разів оновлював світовий рекорд у стрибках з жердиною (17 разів на відкритому повітрі та 18 разів у закритих приміщеннях).'
+      }
+    ];
+
+    // ==========================================
+    // 4. РЕНДЕР КАРТОК ВИДІВ СПОРТУ
+    // ==========================================
+    const sportsGrid = document.getElementById('sports-grid');
+    const filterButtons = document.querySelectorAll('.sport-filter-btn');
+
+    function renderSports(category = 'all') {
+      const filtered = category === 'all' 
+        ? sportsArticles 
+        : sportsArticles.filter(item => item.category === category);
+
+      sportsGrid.innerHTML = filtered.map(sport => `
+        <article class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden flex flex-col justify-between card-hover">
+          <div>
+            <!-- Верхня декоративна плашка -->
+            <div class="h-36 bg-gradient-to-br ${sport.accentGradient} p-6 text-white relative overflow-hidden flex flex-col justify-between">
+              <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/10"></div>
+              <div class="flex items-center justify-between relative z-10">
+                <span class="px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-xs font-bold tracking-wide">
+                  ${sport.categoryLabel}
+                </span>
+                <span class="text-xs text-white/80 font-medium">${sport.readTime}</span>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center text-uaGold relative z-10">
+                ${sport.iconSvg}
+              </div>
+            </div>
+
+            <!-- Текст картки -->
+            <div class="p-6">
+              <h3 class="text-xl font-display font-bold text-slate-900 leading-snug mb-3">
+                ${sport.title}
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                ${sport.summary}
+              </p>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 pt-2">
+            <button 
+              onclick="openSportModal('${sport.id}')" 
+              class="w-full py-3 px-4 rounded-xl bg-slate-100 hover:bg-uaBlue text-slate-800 hover:text-white font-semibold text-sm transition-colors flex items-center justify-center gap-2 group"
+            >
+              <span>Читати повну статтю</span>
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-uaBlue', 'text-white', 'shadow-md', 'shadow-uaBlue/20');
+          b.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+        });
+        btn.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+        btn.classList.add('bg-uaBlue', 'text-white', 'shadow-md', 'shadow-uaBlue/20');
+
+        renderSports(btn.dataset.category);
+      });
+    });
+
+    // ==========================================
+    // 5. РЕНДЕР КАРТОК СПОРТСМЕНІВ ТА ПОШУК
+    // ==========================================
+    const athletesGrid = document.getElementById('athletes-grid');
+    const athletesEmpty = document.getElementById('athletes-empty');
+    const athleteSearchInput = document.getElementById('athlete-search');
+    const resetSearchBtn = document.getElementById('reset-search-btn');
+
+    function renderAthletes(query = '') {
+      const normalized = query.trim().toLowerCase();
+      const filtered = athletesData.filter(a => 
+        a.name.toLowerCase().includes(normalized) || 
+        a.sport.toLowerCase().includes(normalized) ||
+        a.badge.toLowerCase().includes(normalized)
+      );
+
+      if (filtered.length === 0) {
+        athletesGrid.classList.add('hidden');
+        athletesEmpty.classList.remove('hidden');
+        return;
+      }
+
+      athletesGrid.classList.remove('hidden');
+      athletesEmpty.classList.add('hidden');
+
+      athletesGrid.innerHTML = filtered.map(athlete => `
+        <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden flex flex-col justify-between card-hover">
+          <div>
+            <!-- Стилізований аватар-банер -->
+            <div class="p-6 bg-gradient-to-br ${athlete.cardColor} text-white relative">
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-2.5 py-1 rounded-lg bg-white/15 text-[11px] font-bold uppercase tracking-wider">
+                  ${athlete.sport}
+                </span>
+                <div class="w-11 h-11 rounded-2xl bg-uaGold text-navyDeep font-display font-black text-base flex items-center justify-center shadow-md">
+                  ${athlete.initials}
+                </div>
+              </div>
+              <h3 class="text-xl font-display font-extrabold leading-tight">
+                ${athlete.name}
+              </h3>
+              <p class="text-xs text-blue-200 mt-1">${athlete.years}</p>
+            </div>
+
+            <div class="p-5">
+              <div class="inline-block px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold mb-3">
+                ★ ${athlete.badge}
+              </div>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                ${athlete.shortDesc}
+              </p>
+            </div>
+          </div>
+
+          <div class="px-5 pb-5">
+            <button 
+              onclick="openAthleteModal('${athlete.id}')" 
+              class="w-full py-2.5 px-4 rounded-xl border-2 border-uaBlue text-uaBlue hover:bg-uaBlue hover:text-white font-semibold text-sm transition-colors"
+            >
+              Детальніше про кар’єру
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    athleteSearchInput.addEventListener('input', (e) => {
+      renderAthletes(e.target.value);
+    });
+
+    resetSearchBtn.addEventListener('click', () => {
+      athleteSearchInput.value = '';
+      renderAthletes('');
+    });
+
+    // ==========================================
+    // 6. ЛОГІКА МОДАЛЬНИХ ВІКОН
+    // ==========================================
+    const modal = document.getElementById('article-modal');
+    const modalBadge = document.getElementById('modal-badge');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    const modalBody = document.getElementById('modal-body');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const closeModalFooterBtn = document.getElementById('close-modal-footer-btn');
+
+    function openSportModal(sportId) {
+      const sport = sportsArticles.find(s => s.id === sportId);
+      if (!sport) return;
+
+      modalBadge.textContent = sport.categoryLabel;
+      modalTitle.textContent = sport.title;
+      modalSubtitle.textContent = `Оглядова стаття • ${sport.readTime}`;
+
+      modalBody.innerHTML = `
+        ${sport.fullContent.map(p => `<p>${p}</p>`).join('')}
+        <div class="mt-6 p-5 rounded-2xl bg-blue-50/80 border border-blue-100">
+          <h4 class="font-display font-bold text-slate-900 text-base mb-3">Головні факти та досягнення:</h4>
+          <ul class="space-y-2 text-sm text-slate-700">
+            ${sport.highlights.map(h => `
+              <li class="flex items-start gap-2.5">
+                <span class="text-uaBlue font-bold mt-0.5">✓</span>
+                <span>${h}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      `;
+
+      showModal();
+    }
+
+    function openAthleteModal(athleteId) {
+      const athlete = athletesData.find(a => a.id === athleteId);
+      if (!athlete) return;
+
+      modalBadge.textContent = athlete.sport;
+      modalTitle.textContent = athlete.name;
+      modalSubtitle.textContent = `${athlete.years} • ${athlete.badge}`;
+
+      modalBody.innerHTML = `
+        <blockquote class="p-4 rounded-2xl bg-slate-100 border-l-4 border-uaGold italic text-slate-800 font-medium text-sm sm:text-base">
+          ${athlete.quote}
+        </blockquote>
+        ${athlete.bio.map(p => `<p>${p}</p>`).join('')}
+        <div class="mt-5 p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80">
+          <h4 class="font-display font-bold text-slate-900 text-base mb-3">Ключові титули та рекорди:</h4>
+          <ul class="space-y-2 text-sm text-slate-800">
+            ${athlete.achievements.map(ach => `
+              <li class="flex items-start gap-2.5">
+                <span class="text-amber-600 font-bold">★</span>
+                <span>${ach}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      `;
+
+      showModal();
+    }
+
+    function showModal() {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    closeModalBtn.addEventListener('click', hideModal);
+    closeModalFooterBtn.addEventListener('click', hideModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) hideModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) hideModal();
+    });
+
+    // ==========================================
+    // 7. ЛОГІКА ІНТЕРАКТИВНОЇ ВІКТОРИНИ
+    // ==========================================
+    let currentQuestionIdx = 0;
+    let score = 0;
+    let answered = false;
+
+    const quizProgressText = document.getElementById('quiz-progress-text');
+    const quizScoreBadge = document.getElementById('quiz-score-badge');
+    const quizProgressBar = document.getElementById('quiz-progress-bar');
+    const quizQuestionEl = document.getElementById('quiz-question');
+    const quizOptionsEl = document.getElementById('quiz-options');
+    const quizFeedbackEl = document.getElementById('quiz-feedback');
+    const quizNextBtn = document.getElementById('quiz-next-btn');
+    const quizQuestionArea = document.getElementById('quiz-question-area');
+    const quizResultArea = document.getElementById('quiz-result-area');
+    const finalScoreEl = document.getElementById('final-score');
+    const finalMessageEl = document.getElementById('final-message');
+    const quizRestartBtn = document.getElementById('quiz-restart-btn');
+
+    function loadQuizQuestion() {
+      answered = false;
+      const q = quizQuestions[currentQuestionIdx];
+
+      quizProgressText.textContent = `Питання ${currentQuestionIdx + 1} з ${quizQuestions.length}`;
+      quizScoreBadge.textContent = `Рахунок: ${score}`;
+      quizProgressBar.style.width = `${((currentQuestionIdx + 1) / quizQuestions.length) * 100}%`;
+
+      quizQuestionEl.textContent = q.question;
+      quizFeedbackEl.classList.add('hidden');
+      quizNextBtn.classList.add('hidden');
+
+      quizOptionsEl.innerHTML = q.options.map((opt, idx) => `
+        <button 
+          onclick="selectQuizAnswer(${idx})" 
+          class="quiz-opt-btn w-full text-left p-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/15 text-slate-100 font-medium text-sm sm:text-base transition-all flex items-center gap-3.5"
+        >
+          <span class="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center font-display font-bold text-xs text-uaGold shrink-0">
+            ${['А', 'Б', 'В', 'Г'][idx]}
+          </span>
+          <span>${opt}</span>
+        </button>
+      `).join('');
+    }
+
+    window.selectQuizAnswer = function(selectedIdx) {
+      if (answered) return;
+      answered = true;
+
+      const q = quizQuestions[currentQuestionIdx];
+      const buttons = document.querySelectorAll('.quiz-opt-btn');
+
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        btn.classList.remove('hover:bg-white/10');
+        if (idx === q.correctIndex) {
+          btn.classList.remove('bg-white/5', 'border-white/15');
+          btn.classList.add('bg-emerald-500/20', 'border-emerald-400', 'text-white');
+        } else if (idx === selectedIdx) {
+          btn.classList.remove('bg-white/5', 'border-white/15');
+          btn.classList.add('bg-rose-500/20', 'border-rose-400', 'text-white');
+        }
+      });
+
+      const isCorrect = selectedIdx === q.correctIndex;
+      if (isCorrect) {
+        score++;
+        quizScoreBadge.textContent = `Рахунок: ${score}`;
+        quizFeedbackEl.className = 'mt-6 p-4 rounded-2xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-200 text-sm leading-relaxed';
+        quizFeedbackEl.innerHTML = `<strong class="text-emerald-300">Правильно!</strong> ${q.explanation}`;
+      } else {
+        quizFeedbackEl.className = 'mt-6 p-4 rounded-2xl bg-rose-500/15 border border-rose-400/40 text-rose-200 text-sm leading-relaxed';
+        quizFeedbackEl.innerHTML = `<strong class="text-rose-300">Не зовсім так.</strong> ${q.explanation}`;
+      }
+
+      quizFeedbackEl.classList.remove('hidden');
+      quizNextBtn.textContent = currentQuestionIdx < quizQuestions.length - 1 ? 'Наступне питання →' : 'Показати результат';
+      quizNextBtn.classList.remove('hidden');
+    };
+
+    quizNextBtn.addEventListener('click', () => {
+      currentQuestionIdx++;
+      if (currentQuestionIdx < quizQuestions.length) {
+        loadQuizQuestion();
+      } else {
+        showQuizResults();
+      }
+    });
+
+    function showQuizResults() {
+      quizQuestionArea.classList.add('hidden');
+      quizResultArea.classList.remove('hidden');
+      finalScoreEl.textContent = `${score} / ${quizQuestions.length}`;
+
+      if (score === 5) {
+        finalMessageEl.textContent = 'Феноменально! Ви справжній експерт з історії українського спорту та олімпійських перемог!';
+      } else if (score >= 3) {
+        finalMessageEl.textContent = 'Чудовий результат! Ви добре знаєте видатних атлетів та рекорди України.';
+      } else {
+        finalMessageEl.textContent = 'Гарний початок! Перегляньте статті про види спорту та біографії наших чемпіонів вище, щоб дізнатися ще більше цікавих фактів.';
+      }
+    }
+
+    quizRestartBtn.addEventListener('click', () => {
+      currentQuestionIdx = 0;
+      score = 0;
+      quizResultArea.classList.add('hidden');
+      quizQuestionArea.classList.remove('hidden');
+      loadQuizQuestion();
+    });
+
+    // ==========================================
+    // 8. МОБІЛЬНЕ МЕНЮ ТА ІНІЦІАЛІЗАЦІЯ
+    // ==========================================
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      menuIconOpen.classList.toggle('hidden', isHidden);
+      menuIconClose.classList.toggle('hidden', !isHidden);
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+      });
+    });
+
+    // Початковий запуск
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSports('all');
+      renderAthletes('');
+      loadQuizQuestion();
+    });
+  </script>
+</body>
+</html>
